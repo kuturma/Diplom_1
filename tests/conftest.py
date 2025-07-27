@@ -11,10 +11,6 @@ def make_ingredient_mock(ingredient_type, name, price=100):
     return mock_ingredient
 
 
-@pytest.fixture
-def burger():
-    return Burger()
-
 
 @pytest.fixture
 def bun():

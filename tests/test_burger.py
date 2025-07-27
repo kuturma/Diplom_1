@@ -4,12 +4,14 @@ from praktikum.burger import Burger
 
 
 class TestBurger:
-    def test_set_buns(self, burger, bun): # тест добавления булочки
+    def test_set_buns(self, bun): # тест добавления булочки
+        burger = Burger()
         burger.set_buns(bun)
         assert burger.bun == bun
 
 
-    def test_add_ingredient(self, burger, sauce): # тест добавления ингредиента в бургер
+    def test_add_ingredient(self, sauce): # тест добавления ингредиента в бургер
+        burger = Burger()
         burger.add_ingredient(sauce)
         assert sauce in burger.ingredients
         assert len(burger.ingredients) == 1
@@ -23,7 +25,8 @@ class TestBurger:
         assert ingredient_to_remove not in prepared_burger.ingredients
 
 
-    def test_remove_invalid_index(self, burger, sauce): # тест невалидных индексов при удалении ингредиента
+    def test_remove_invalid_index(self, sauce): # тест невалидных индексов при удалении ингредиента
+        burger = Burger()
         with pytest.raises(IndexError):
             burger.remove_ingredient(0)
 
@@ -45,7 +48,8 @@ class TestBurger:
         (0, [0, 0], 0),
         (300, [150, 250, 100], 1100)
     ])
-    def test_get_price(self, burger, bun, bun_price, ingredients_prices, expected): # тест расчета цены с использованием параметризации
+    def test_get_price(self, bun, bun_price, ingredients_prices, expected): # тест расчета цены с использованием параметризации
+        burger = Burger()
         bun.get_price.return_value = bun_price
         burger.set_buns(bun)
 
